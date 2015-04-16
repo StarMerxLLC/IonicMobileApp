@@ -22,7 +22,7 @@
         <param name="android-package" value="org.pgsqlite.SQLitePlugin" />
     </feature>
     <icon density="hdpi" src="res/android/hdpi.png" />
-    <name>星商</name>
+    <name>ionic</name>
     <description>
         An Ionic Framework and Cordova project.
     </description>
