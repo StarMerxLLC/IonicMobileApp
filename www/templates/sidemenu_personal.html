@@ -1,0 +1,22 @@
+<ion-side-menus>
+    <ion-side-menu-content drag-content="false">
+        <ion-header-bar class="bar bar-positive">
+            <button class="button button-icon icon icon-left ion-navicon" menu-toggle="left">市场</button>
+            <h1 class="title">市场：{{activeMarket.market_name}}</h1>
+            <button class="button icon-left ion-refresh" ng-click="refresh()">刷新</button>
+        </ion-header-bar>
+        <ion-nav-view name="sidemenu" animation="slide-left-right"></ion-nav-view>
+    </ion-side-menu-content>
+    <ion-side-menu side="left" class="dark-bg" width="180">
+        <ion-header-bar class="bar-assertive">
+            <h2 class="title">所有市场</h2>
+        </ion-header-bar>
+        <ion-content scroll="true" class="has-header">
+            <ion-list>
+                <ion-item class="item item-dark" ng-repeat="market in markets" ng-click="selectMarket(market)" ng-class="{active: activeMarket==market}" menu-close>
+                    {{market.market_name}}
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </ion-side-menu>
+</ion-side-menus>

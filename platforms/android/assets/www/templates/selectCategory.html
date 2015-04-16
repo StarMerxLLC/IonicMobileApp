@@ -1,0 +1,44 @@
+<div class="modal">
+    <!-- Modal header bar -->
+  
+   <ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content>
+       <div class="bar bar-header  bar-positive">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">市场
+        </button>
+          <h1 class="title">选择品类</h1>
+          <button class="button button-clear pull-right" ng-click="closeModal()">关闭</button>
+     </div>
+      <div class="bar bar-subheader ">
+          <h2 class="title" ng-if="categorys.length==0">请选择市场！</h2>
+          <button class="button button-outline icon-left ion-arrow-down-a button-royal pull-right" ng-click="download()">开始下载</button>
+     </div>
+    <ion-content class="has-subheader">
+      <ion-list>
+      <ion-item class="item item-checkbox " ng-repeat="category in categorys">
+        <label class="checkbox checkbox-positive">
+              <input type="checkbox" name="chBox">
+        </label>
+        <i class="icon balanced ion-checkmark-circled" ng-if="category.downloaded"></i>
+        {{category.catname}}
+        
+    </ion-item>
+    </ion-list>
+      </ion-content>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left">
+    <ion-header-bar class="bar-positive">
+      <h2 class="title">全部市场</h2>
+    </ion-header-bar>
+    <ion-content>
+      <ion-list>
+            <ion-item class="item item-stable" ng-repeat="market in markets" ng-click="selectMarket(market)" ng-class="{active: activeMarket==market}" menu-close>
+                {{market.market_name}}
+            </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>
+
+  </div>

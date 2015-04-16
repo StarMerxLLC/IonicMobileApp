@@ -1,0 +1,6 @@
+# view AndroidManifest.xml #generated:16
+-keep class com.ionicframework.PadProd618394.CordovaApp { <init>(...); }
+
+# view AndroidManifest.xml #generated:22
+-keep class org.pgsqlite.SQLitePlugin { <init>(...); }
+

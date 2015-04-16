@@ -1,0 +1,78 @@
+<ion-side-menus>
+    <ion-side-menu-content drag-content="true" class="has-header">
+        <div class="bar bar-subheader bar-stable">
+            <a class="button button-clear" ng-repeat="cat in cathistory" ng-click="selectCategory(cat, $index)"><h5>{{cat.catname}}>></h5></a>
+            <button class="button button-positive pull-right" ng-click="assign()">
+          	分配供应商
+            </button>
+        </div>
+        <ion-content class="has-subheader">
+        <ion-list>
+        <ion-item class="item item-input-inset ">
+            <div class="item-input-wrapper light-bg" style="border:1px solid green">
+              <i class="icon ion-ios7-search placeholder-icon"></i>
+              <input type="text" placeholder="请输入产品title或asin" ng-model="searchItem.item">
+              <i class="icon ion-ios7-close dark" ng-show="searchItem.item.length" ng-click="clear()"></i>
+            </div>
+            <button class="button button-clear button-positive" ng-click="searchPro()">
+              搜索
+            </button>
+          </ion-item>
+        <ion-item class="item item-avatar-right" ng-repeat="product in products">
+            <label class="checkbox checkbox-positive">
+                <input type="checkbox" name="checkbox1">
+              </label>
+             <img ng-click="showImg(product.image)" ng-src="{{product.image}}" height="100" width="100"/>
+          <h2>{{product.title}}</h2>
+          <div class="row">
+            <p>{{product.price|currency}}</p>
+            <div class="col col-10"></div>
+<!--             <div class="col col-33"></div>
+             <button class="button button-clear icon-left ion-star button-royal" ng-click="collection(product)">收藏</button> -->
+            <div class="col"></div>
+            <button class="button button-clear icon-left ion-star button-royal" ng-click="collection(product)">收藏</button>
+            <button class="button button-clear icon-left ion-chatbubble" ng-class="{'button-positive':!isDev(product),'button-balanced':isDev(product)}" ng-click="showdetail(product)">详细</button>
+          </div>
+      </ion-item>
+      <ion-item class="item padding text-center" ng-if="messageTip">
+        <h2>请选择品类来浏览产品！</h2>
+      </ion-item>
+      <ion-item class="item padding text-center" ng-if="proMessage">
+        <h2>该品类下无产品！</h2>
+      </ion-item>
+       <ion-item class="item padding text-center" ng-if="products.length>19">
+                  <a class="button button-dark button-clear" ng-click="loadMoreData()">
+                    <i class="icon ion-loading-b" ng-if="!loadMoreFinished"></i>
+                    <h2 ng-if="!loadMoreFinished">正在加载 请稍候...</h2>
+                    <h2 ng-if="loadMoreFinished && haveMoreItems">点击加载更多</h2>
+                    <h2 ng-if="!haveMoreItems">没有更多内容啦</h2></a>
+      </ion-item>
+      </ion-list>
+        </ion-content>
+    </ion-side-menu-content>
+
+    <ion-side-menu side="left" class="stable-bg"  expose-aside-when="large" width="250" >
+    <ion-header-bar class="bar bar-subheader bar-stable">
+            <h2 class="title">品类列表：</h2>
+        </ion-header-bar>
+        <ion-content scroll="true" class="has-subheader">
+            <ion-list>
+            <ion-item class="item padding text-center item-stable" ng-if="categorys.length==0">
+            <h3>无品类信息！</h3>
+          </ion-item>
+                <ion-item ng-repeat="category in categorys" ng-click="selectCategory(category, -1)" class="item item-stable">
+                    <h3>{{category.catname}}</3>
+                      <i class="icon balanced ion-checkmark-circled" ng-if="category.downloaded"></i>
+                </ion-item>
+            </ion-list>
+            <script id="image-modal.html" type="text/ng-template">
+              <div class="modal image-modal transparent" ng-click="closeModal()">
+                  <ion-pane class="transparent">
+                     <img ng-src="{{imageSrc}}" class="fullscreen-image"/>
+                  </ion-pane>
+              </div>
+          </script>
+        </ion-content>
+    </ion-side-menu>
+    
+</ion-side-menus>

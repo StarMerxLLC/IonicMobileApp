@@ -1,0 +1,59 @@
+<ion-view title="添加新供应商">
+    <div class="bar bar-header bar-positive">
+    	<a class="button icon-left ion-chevron-left pull-left" href="#/app/suppliers">返回</a>
+    	<h1 class="title">供应商</h1>
+    </div>
+	<ion-content class="has-header padding">
+		<form name="formCreate">
+			<div class="list list-inset">
+				<label class="item item-input">
+					<span class="input-label" style="width:100px">名称：</span>
+					<i class="icon ion-alert-circled placeholder-icon assertive" ng-show="!formCreate.name.$pristine && formCreate.name.$invalid">
+					</i>
+					<input type="text" name="name" placeholder="(必填)名称" ng-model="newsupplier.name" required>
+				</label>
+				<label class="item item-input">
+					<span class="input-label" style="width:100px">地址：</span>
+					<i class="icon ion-alert-circled placeholder-icon assertive" ng-show="!formCreate.location.$pristine && formCreate.location.$invalid"></i>
+					<input type="text" name="location" placeholder="(必填)地址" ng-model="newsupplier.location" required>
+				</label>
+				<label class="item item-input">
+					<span class="input-label" style="width:100px">联系人：</span>
+					<i class="icon ion-alert-circled placeholder-icon assertive" ng-show="!formCreate.contact.$pristine && formCreate.contact.$invalid"></i>
+					<input type="text" name="contact" placeholder="(必填)联系人" ng-model="newsupplier.contact" required>
+				</label>
+				<label class="item item-input">
+				    <span class="input-label" style="width:100px">电话：</span>
+				    <i class="icon ion-alert-circled placeholder-icon assertive" ng-show="!formCreate.telephone.$pristine && formCreate.telephone.$invalid"></i>
+				    <input type="tel" name="telephone" placeholder="(必填)电话"ng-model="newsupplier.telephone" required>
+				</label>
+				<label class="item item-input item-select">
+					<span class="input-label" style="width:100px"> 类型：</span>
+			              <select ng-model="selecttype.value" class="item-select" style="width:200px">
+			                <option ng-repeat="type in suppliertypes" value="{{type.value}}">{{type.name}}</option>
+			              </select>
+				</label>
+				<label class="item item-input">
+					<span class="input-label" style="width:100px">url：</span>
+					<input type="text" name="url" placeholder="URL:" ng-model="newsupplier.url">
+				</label>
+				<label class="item item-input">
+					<span class="input-label" style="width:100px">email：</span>
+					<input type="email" name="email" placeholder="Email:" ng-model="newsupplier.email">
+				</label>
+				<label class="item item-input">
+					<span class="input-label" style="width:100px">备注：</span>
+					<input type="text" name="beizhu" placeholder="备注：" ng-model="newsupplier.beizhu">
+				</label>
+			</div>
+			<div class="list list-inset">
+				<div class="button-bar">
+					<button type="button" class="button button-dark icon-left ion-close" ng-click="cancel()">取消</button>
+					<button class="button button-balanced icon-left ion-checkmark" ng-disabled="formCreate.$invalid" ng-click="createSupplier()">
+						保存
+					</button>
+				</div>
+			</div>
+		</form>
+	</ion-content>
+</ion-view>

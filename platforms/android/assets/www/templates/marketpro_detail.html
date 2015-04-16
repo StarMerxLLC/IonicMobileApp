@@ -1,0 +1,61 @@
+<ion-view title="详细信息">
+  <div class="bar bar-header bar-positive">
+    <button class="button icon-left ion-chevron-left" ng-click="back()">返回</button>
+    <h1 class="title">产品详情</h1>
+  </div>
+      <ion-content class="has-header">
+            <div class="list card">
+              <div class="item item-body">
+                <img class="image" src="{{product.image}}">
+                <h2>{{product.title}}</h2>
+                <p >
+                  <a style="color:red" href="" class="subdued">{{product.price|currency}}</a>
+                  <a style="color:red" href="" class="subdued">{{product.reviews}} Reviews</a>
+                </p>
+              </div>
+            </div>
+            <div class="list card">
+              <div class="item item-divider">
+                <h2>产品分配情况：</h2>
+              </div>
+              <div class="item item-icon-right" ng-repeat="assign in assigns">
+                <h3>{{assign.name}}</h3>
+                <i class="icon" ng-if="assign.finished=='true'"><h4 class="balanced">已完成</h4></i>
+                <i class="icon" ng-if="assign.finished=='false'"><h4 class="assertive">待完成</h4></i>
+              </div>
+              <div class="item" ng-if="assigns.length==0">
+                <h3 class="assertive">无分配对象</h3>
+              </div>
+            </div>
+            <div class="list card">
+              <div class="item item-divider">
+                <h2>供应商列表：</h2>
+              </div>
+              <div class="item" ng-if="suppliers.length==0">
+                <h3 class="assertive">没有供应商！</h3>
+              </div>
+              <div class="item item-thumbnail-right" ng-repeat="supplier in suppliers">
+                  <img ng-click="openImgModel(supplier.cardimg)" ng-src="{{supplier.cardimg}}">
+                <div class="row">
+                  <h3 class="col">{{supplier.name}}</h3>
+                </div>
+                <div class="row">
+                  <h3 class="col">Price：{{supplier.price}}； LeadTime：{{supplier.lead_time}}； MOQ：{{supplier.MOQ}}
+                  </h3>
+                </div>
+                <h3 class="row">
+                    <i class="col col-25 icon ion-person">{{supplier.contact}}</i>
+                    <i class="col icon balanced ion-ios7-telephone">{{supplier.telephone}}</i>
+                </h3>
+                <h3 class="row"><i class="col icon ion-location">{{supplier.location}}</i></h3>
+              </div>
+            </div>
+             <script id="image-modal.html" type="text/ng-template">
+              <div class="modal image-modal transparent" ng-click="closeModal()">
+                  <ion-pane class="transparent">
+                     <img ng-src="{{imageSrc}}" class="fullscreen-image"/>
+                  </ion-pane>
+              </div>
+          </script>
+        </ion-content>
+</ion-view>

@@ -1,0 +1,39 @@
+<div class="modal">
+    <!-- Modal header bar -->
+    <ion-header-bar class="bar-positive">
+    <button class="button button-clear" ng-click="close()">取消</button>
+      <h1 class="title">搜索供应商</h1>
+    <button class="button button-clear" ng-click="submitSupplier()">提交</button>
+    </ion-header-bar>
+      <div class="bar bar-subheader item-input-inset light-bg row">
+          <div  class="col">
+            <fp-search-bar search-model="selectItem.name" focused="focused" submit="searchSupplier()"></fp-search-bar>
+          </div>
+          <button class="button button-small button-clear button-positive" ng-click="searchSupplier()">
+              搜索
+            </button>
+        </div>
+
+    <!-- Modal content area -->
+    <ion-content class="has-subheader">
+      <div class="list">
+        <div class="item" ng-show="suppliers.length==0">
+          <p style="color:red" class="text-center">抱歉，没有找到符合条件的供应商！</p>
+        </div>
+
+        <label class="item item-radio" ng-repeat='supplier in suppliers' >
+          <input type="radio" name="group" ng-value="supplier" ng-model="supplierSelected.supplier">
+          <div class="item-content">
+          {{supplier.name}}
+          </div>
+          <i class="radio-icon ion-checkmark"></i></input>
+        </label>
+        <div class="item padding text-center" ng-if="suppliers.length>9" ng-click="loadMoreData()">
+              <a class="button button-dark button-clear">
+                <i class="icon ion-loading-b" ng-if="!loadfinished"></i>
+                <h2 ng-if="loadfinished">点击加载更多</h2>
+              </a>
+        </div>
+      </div>
+    </ion-content>
+  </div>

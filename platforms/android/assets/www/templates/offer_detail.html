@@ -1,0 +1,37 @@
+<ion-view title="详细信息">
+  <div class="bar bar-header bar-positive">
+    <button class="button icon-left ion-chevron-left" ng-click="back()">返回</button>
+    <h1 class="title">产品详情</h1>
+  </div>
+      <ion-content class="has-header">
+            <div class="list card">
+              <div class="item item-body">
+                <img class="image" src="{{product.image}}">
+                <h2>{{product.title}}</h2>
+                <p >
+                  <a style="color:red" href="" class="subdued">{{product.price|currency}}</a>
+                  <a style="color:red" href="" class="subdued">{{product.reviews}} Reviews</a>
+                </p>
+              </div>
+            </div>
+            <div class="list card">
+              <div class="item item-divider">
+                <h2>供应商</h2>
+              </div>
+              <div class="item item-avatar" ng-repeat="supplier in suppliers">
+                <img src="img/avatar.gif">
+                <div class="row">
+                  <h2 class="col">{{supplier.name}}</h2>
+                </div>
+                <div class="row">
+                  <h3 class="col">Price：{{supplier.price}}； LeadTime：{{supplier.lead_time}}； MOQ：{{supplier.MOQ}}</h3></div>
+                <h3 class="row">
+                    <i class="col col-25 icon ion-person">{{supplier.contact}}</i>
+                    <i class="col icon balanced ion-ios7-telephone">{{supplier.telephone}}</i>
+                </h3>
+                <h3 class="row"><i class="col icon ion-location">{{supplier.location}}</i></h3>
+                
+              </div>
+            </div>
+        </ion-content>
+</ion-view>

@@ -1,0 +1,139 @@
+<ion-view title="开发产品">
+    <div class="bar bar-header bar-positive">
+       <button class="button icon-left ion-chevron-left pull-left" ng-click="back()">
+            返回
+            </button>
+       <h1 class="title">开发产品</h1>
+    </div>
+    <div class="bar bar-subheader" >
+        <div style="text-align:center;">
+        <button class="button icon-left ion-ios7-search button-positive" ng-click="viewSupplier()">选择已有供应商</button>
+        <button class="button icon-left ion-camera button-royal" ng-click="getPhoto()">拍照</button>
+      </div>
+    </div>
+    <ion-content class="has-subheader">
+    <form>
+      <div class="list list-inset" ng-show="supplierInfoShow">
+        <div class="item item-divider row calm-bg">
+          <div class="col">选定的供应商：</div>
+        </div>
+        <div class="item row">
+          <h3 class="col">
+            <i class="icon positive ion-home">：</i>{{supplierAdd.name}}
+          </h3>
+        </div>
+        <div class="item row">
+          <h3 class="col">
+            <i class="icon positive ion-person">：</i>{{supplierAdd.contact}}
+          </h3>
+            <h3 class="col">
+              <i class="icon positive ion-ios7-telephone">电话：</i>{{supplierAdd.telephone}}
+            </h3>
+        </div>
+        <div class="item row">
+          <h3 class="col">
+            <i class="icon positive ion-location">地址：</i>{{supplierAdd.location}}
+          </h3>
+          <h3 class="col">
+            <i class="icon positive ion-information-circled">类型：</i>{{supplierAdd.type}}
+          </h3>
+        </div>
+        <div class="item row">
+          <h3 class="col">
+            <i class="icon positive ion-information-circled">Url：</i>{{supplierAdd.url}}
+          </h3>
+          <h3 class="col">
+            <i class="icon positive ion-information-circled">Email：</i>{{supplierAdd.email}}
+          </h3>
+      </div>
+      <div class="item row">
+          <h3 class="col">
+            <i class="icon positive ion-information-circled">备注：</i>{{supplierAdd.beizhu}}
+          </h3>
+      </div>
+    </div>
+      <div class="list list-inset" ng-show="!supplierInfoShow">
+        <div class="item item-divider row calm-bg">
+          <div class="col">编辑新供应商：</div>
+        </div>
+        <div class="item" style="text-align:center;" ng-if="lastPhoto">
+          <img ng-src="{{lastPhoto}}" style="max-width: 50%">
+          <button class="button button-icon assertive ion-close" ng-click="deltetePhoto()"></button>
+        </div>
+         <div class="item item-input item-select row">
+          <label class="col col-50">
+            <input type="text" placeholder="名称：" ng-model="supplierAdd.name" required>
+          </label>
+            <h3 class="input-label">类型：</h3>
+              <select ng-model="selecttype.value">
+                <option ng-repeat="type in suppliertypes" value="{{type.value}}">{{type.name}}</option>
+              </select>
+        </div>
+        <div class="item item-input row">
+          <label class="col col-50">
+            <input type="text" placeholder="联系人：" ng-model="supplierAdd.contact" required>
+          </label>
+          <label class="col">
+            <input type="tel" placeholder="电话：" ng-model="supplierAdd.telephone" required>
+          </label>
+        </div>
+        <div class="item item-input row">
+          <label class="col">
+            <input type="text" placeholder="地址：" ng-model="supplierAdd.location" required>
+          </label>
+          <label class="col">
+            <input type="text" placeholder="Url：" ng-model="supplierAdd.url">
+          </label>
+        </div>
+        <div class="item item-input row">
+          <label class="col">
+            <input type="email" placeholder="Email：" ng-model="supplierAdd.email">
+          </label>
+        </div>
+        <div class="item item-input row">
+          <label class="col">
+            <input type="text" placeholder="备注：" ng-model="supplierAdd.beizhu">
+          </label>
+        </div>
+      </div>
+    </form>
+        <div class="list card">
+          <div class="item item-thumbnail-left" 
+          ng-repeat="product in products">
+            <img src="{{product.image}}">
+            <h2>{{product.title}}</h2>
+            <p class="positive">{{product.price|currency}}</p>
+            <div class="row">
+              <h3 class="col col-20">净重：{{product.weight}}g</h3>
+              <h3 class="col col-20">毛重：{{product.grossweight}}g</h3>
+              <h3 class="col col-20">实际净重：{{product.real_weight}}g</h3>
+              <h3 class="col">实际毛重：{{product.real_grossweight}}g</h3>
+              <button class="button button-clear icon-left ion-compose button-positive" ng-click="editProduct(product)">编辑重量</button>
+<!--               <i class="icon ion-compose positive" ng-click="editProduct(product)">编辑重量</i> -->
+             </div>
+            <div class="item-input row">
+                <h3>价格：</h3>
+                <label class="col col-20 item-input-wrapper">
+                  <input class="calm-bg" type="number" ng-model="product.offerprice">
+                </label>
+                <h3>leadtime：</h3>
+                <label class="col col-20 item-input-wrapper">
+                  <input type="number" ng-model="product.lead_time" >
+                </label>
+                <h3>MOQ：</h3>
+                <label class="col col-20 item-input-wrapper">
+                  <input type="number" ng-model="product.MOQ">
+                </label>
+                <h3 class="col"></h3>
+               <button class="button button-clear icon-left ion-trash-b button-balanced" ng-click="deleteProduct(product)">删除</button>
+            </div>
+          </div>
+        </div>
+        <div class="list list-inset">
+          <div class="button-bar">
+            <button class="button button-balanced" ng-click="saveProSupplier()">提交</button>
+          </div>
+      </div>
+
+        </ion-content>
+</ion-view>

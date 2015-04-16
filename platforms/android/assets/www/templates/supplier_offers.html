@@ -1,0 +1,132 @@
+<ion-view>
+    <div class="bar bar-header bar-positive">
+       <a class="button icon-left ion-chevron-left pull-left" href="#/app/suppliers">返回</a>
+       <h1 class="title">Offer</h1>
+        <a class="button button-icon icon-left ion-plus-circled pull-right" ng-click="addOffer()"></a>
+    </div>
+    <div class=" bar bar-subheader item-input-inset stable-bg row">
+          <div class="col col-67">
+            <label class="item-input-wrapper">
+              <i class="icon ion-ios7-search placeholder-icon"></i>
+            <input type="text" placeholder="Search Offer..." ng-model="offerFilter">
+          </label>
+        </div>
+          <button class="button button-small button-clear button-positive" ng-click="offerFilter = ''">
+             清空
+            </button>
+            <span class="col col-10"></span>
+            <button id="editBut" class="button button-outline button-positive" ng-click="editSupplier(supplier)">编辑供应商</button>
+    </div>
+    <ion-content class="has-subheader">
+        <ion-refresher
+          pulling-text="Pull to refresh..."
+          refreshing-text="refreshing"
+          on-refresh="refresh()">
+        </ion-refresher>
+        <ion-list ng-if="!editsupplier">
+          <ion-item class="item item-avatar item-icon-right">
+          <img src="img/avatar.gif">
+            <h2>{{supplier.name}}</h2>
+          </ion-item>
+          <ion-item class="item" style="text-align:center;" ng-if="supplier.cardimg">
+            <img ng-click="showImg(supplier.cardimg)" ng-src="{{supplier.cardimg}}" style="max-width: 10%">
+            <h3 >供应商名片</h3>
+        </ion-item>
+          <ion-item class="item">
+            <h2 class="row">
+              <i class="col col-25 icon ion-person">{{supplier.contact}}</i>
+              <i class="col col-25 icon ion-ios7-telephone">{{supplier.telephone}}</i>
+              <i class="col col-25 icon ion-email">{{supplier.email}}</i>
+            </h2>
+            <h2 class="row">
+              <i class="col col-50 icon ion-location"> {{supplier.location}}</i>
+              <span class="col">类型：{{supplier.type}}</span>
+            </h2>
+            <h2 class="row">
+              <span class="col">Url：{{supplier.url}}</span>
+            </h2>
+            <h2 class="row">
+              <span class="col">备注：{{supplier.beizhu}}</span>
+            </h2>
+          </ion-item>
+        </ion-list>
+        <div class="list list-inset" ng-if="editsupplier">
+          <div class="item" style="text-align:center;" ng-if="supplier.cardimg">
+            <img ng-src="{{supplier.cardimg}}" style="max-width: 100%">
+          </div>
+        <div class="item item-input row">
+          <span>名称：</span>
+            <label class="col">
+              <input type="text" ng-model="supplierEdited.name">
+            </label>
+        </div>
+        <div class="item item-input row">
+          <span>联系人：</span>
+          <label class="col">
+            <input type="text" ng-model="supplierEdited.contact">
+          </label>
+          <span>电话：</span>
+          <label class="col">
+            <input type="tel" ng-model="supplierEdited.telephone">
+          </label>
+        </div>
+        <div class="item item-input row">
+          <span>地址：</span>
+          <label class="col">
+            <input type="text" ng-model="supplierEdited.location">
+          </label>
+          
+        </div>
+        <div class="item item-input item-select row">
+          <h3>URL：</h3>
+          <label class="col col-50">
+            <input type="text" ng-model="supplierEdited.url">
+          </label>
+          <h3 class="input-label">类型：</h3>
+              <select ng-model="selecttype.value" class="item-select" style="width:200px">
+                <option ng-repeat="type in suppliertypes" value="{{type.value}}" ng-selected="selecttype.value==type.value">{{type.value}}</option>
+              </select>
+        </div>
+        <div class="item item-input row">
+          <span>Email：</span>
+          <label class="col">
+            <input type="email" ng-model="supplierEdited.email">
+          </label>
+        </div>
+        <div class="item item-input row">
+          <span>备注：</span>
+          <label class="col">
+            <input type="text" ng-model="supplierEdited.beizhu">
+          </label>
+        </div>
+    </div>
+    <div class="list list-inset" ng-if="editsupplier">
+        <div class="button-bar">
+            <button class="button button-balanced" ng-click="updateSupplier(supplierEdited)">保存</button>
+          </div>
+      </div>
+          <ion-list>
+          <ion-item class="item item-divider">
+          产品列表：
+        </ion-item>
+              <ion-item class="item item-thumbnail-left" ng-repeat="offer in offers | filter: offerFilter | filter:{'pro_status_note': activeOfferType.value}" ng-click="offerDetail(offer)">
+              <img ng-src="{{offer.image}}">
+              <h2>{{offer.title}}</h2>
+              <p><span style="color:blue">{{offer.price |currency:"RMB ￥ "}} </span><span> Lead-Time：{{offer.lead_time}}； MOQ：{{offer.MOQ}}； 类型：{{offer.type}}</span></p>
+              <ion-option-button class="button button-assertive icon ion-compose" ng-click="editOffer(offer)">编辑
+                </ion-option-button>
+<!--                 <ion-option-button class="button button-balanced icon ion-trash-a" on-tap="confirmDelete(offer)"></ion-option-button> -->
+              </ion-item>
+              <ion-item class="padding text-center" ng-if="nooffer">
+                <h3>没有你的产品！</h3>
+              </ion-item>
+        </ion-list>
+        <script id="image-modal.html" type="text/ng-template">
+              <div class="modal image-modal transparent" ng-click="closeModal()">
+                  <ion-pane class="transparent">
+                     <img ng-src="{{imageSrc}}" class="fullscreen-image"/>
+                  </ion-pane>
+              </div>
+          </script>
+        </ion-content>
+</ion-view>

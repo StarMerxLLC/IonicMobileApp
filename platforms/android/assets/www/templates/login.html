@@ -1,0 +1,31 @@
+<ion-view title="登录">
+    <div class="bar bar-header bar-positive">
+      <h1 class="title">登录</h1>
+    </div>
+    <ion-content class="has-header stable-bg">
+    <div class="row">
+      <div class="col">
+      <form name="formLogin" ng-submit="login(user)">
+          <div class="list card">
+            <div class="item calm-bg" style="text-align:center;">
+              <img src="img/avatar.gif">
+            </div>
+          <div class="item item-input row">
+            <span>用户名：</span>
+            <label class="col">
+                <input type="text" placeholder="请输入你的pro系统用户名，注意区分大小写！" ng-model="user.username" required>
+              </label>
+              <i class="icon ion-ios7-close dark" ng-show="user.username.length" ng-click="user.username=''"></i>
+          </div>
+      </div>
+       <div class="list list-inset">
+              <div class="button-bar">
+                  <button type="submit" class="button button-balanced" ng-disabled="formLogin.$invalid">登录</button>
+                </div>
+      </div>
+    </form>
+  </div>
+  </div>
+     
+   </ion-content>
+</ion-view>

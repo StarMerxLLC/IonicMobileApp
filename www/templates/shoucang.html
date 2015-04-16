@@ -1,0 +1,42 @@
+<ion-view view-title="收藏的产品">
+        <div class="bar bar-header bar-positive">
+          <button class="button icon-left ion-trash-a" ng-click="clearAllMark()">清空</button>
+            <h1 class="title">收藏夹</h1>
+            <button class="button icon-right ion-chevron-right pull-right" ng-click="assignSupplier()">分配供应商</button>
+        </div>
+        <div class=" bar bar-subheader item-input-inset stable-bg row">
+<!--           <button class="button button-clear icon-left ion-checkmark-circled button-calm" ng-click="selectAll()">全选</button>
+          &nbsp; -->
+          <div class="col col-66"></div>
+            <div class="button-bar">
+              <a class="button button-item1" ng-class="{'button-positive' : isActive('undev')}" ng-click="setActive('undev')">未开发</a>
+              <a class="button button-item2" ng-class="{'button-positive' : isActive('dev')}" ng-click="setActive('dev')">已开发</a>
+            </div>
+        </div>
+  
+      <ion-content class="has-subheader" delegate-handle="mainScroll">
+          <ion-list>
+          <div class="item item-body" ng-show="products.length==0">
+            <h2 class="positive" style="text-align:center">收藏夹是空的！</h2>
+          </div>
+        <ion-item class="item item-thumbnail-right" ng-repeat="product in products">
+            <label class="checkbox checkbox-positive">
+                <input type="checkbox" name="checkbox2">
+              </label>
+             <img ng-click="viewImage(product.image)" ng-src="{{product.image}}" height="100" width="100">
+          <h2>{{product.title}}</h2>
+          <div class="row">
+            <div class="positive">{{product.price|currency}}</div>
+            <div class="col"></div>
+            <button class="button button-clear icon-left ion-star button-assertive" ng-click="quxiao(product)">取消收藏</button>
+            <button class="button button-clear icon-left ion-chatbubble" ng-class="{'button-positive' : !isDev(product),'button-balanced':isDev(product)}" ng-click="showdetail(product)">详细</button>
+          </div>
+      </ion-item>
+      <ion-item class="item padding text-center" ng-show="products.length>9" ng-click="loadMoreData()">
+            <a class="button button-dark button-clear">
+              <i class="icon ion-loading-b" ng-show="!loadfinished"></i>
+              <h2 ng-show="loadfinished">点击加载更多</h2></a>
+      </ion-item>
+      </ion-list>
+  </ion-content>
+</ion-view>
